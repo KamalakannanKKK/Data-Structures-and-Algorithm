@@ -1,0 +1,87 @@
+package LinkedList;
+
+public class QueuewithLinkedList {
+
+	Node5 front;
+	Node5 rear;
+	public QueuewithLinkedList() {
+		this.front=null;
+		this.rear=null;
+	}
+	
+	public void enqueue(int data) {
+		Node5 newNode=new Node5(data);
+		if(front==null) {
+			front=rear=newNode;
+		}
+		else {
+			rear.next=newNode;
+			rear=newNode;
+		}
+	}
+	
+	public int dequeue() {
+		if(front==null) {
+			System.out.println("Queue is UnderFlow");
+			return -1;
+		}
+		int value=front.data;
+		front=front.next;
+		if(front==null) {
+			rear=null;
+		}
+		return value;
+	}
+	
+	public int peek() {
+		if(front==null) {
+			System.out.println("Queue is UnderFlow");
+			return -1;
+		}
+		return front.data;
+	}
+	
+	public boolean isEmpty() {
+		if(front==null) {
+			return true;
+		}
+		else return false;
+	}
+	
+	public void display() {
+		if(isEmpty()) {
+			System.out.println("Queue is underflow");
+		}
+		Node5 temp=front;
+		while(temp!=null) {
+			System.out.println(temp.data+" ");
+			temp=temp.next;
+		}
+	}
+	
+	public static void main(String[] args) {
+		QueuewithLinkedList list=new QueuewithLinkedList();
+		list.enqueue(23);
+		list.enqueue(234);
+		list.enqueue(34);
+		
+		System.out.println("Queue elements :");
+		list.display();
+		
+		list.dequeue();
+		
+		System.out.println("Queue elements :");
+		list.display();
+		
+		System.out.println("Peek element :"+ list.peek());
+	}
+}
+
+class Node5{
+	int data;
+	Node5 next;
+	public Node5(int data) {
+		this.data=data;
+		this.next=null;
+	}
+}
